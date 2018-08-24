@@ -7,15 +7,14 @@
 // init project
 const express = require('express');
 const app = express();
-const fs = require('fs');
-const util = require('util');
+// const util = require('util');
 const Busboy = require('busboy');
 const imagemin = require('imagemin');
 const imageminJpegtran = require('imagemin-jpegtran');
 const imageminPngquant = require('imagemin-pngquant');
 const imageminGifsicle = require('imagemin-gifsicle');
 const uuid = require('uuid-v6');
-const dayjs = require('dayjs');
+// const dayjs = require('dayjs');
 const prettyBytes = require('pretty-bytes');
 
 // "imagemin-jpegtran": "^5.0.2",
@@ -144,7 +143,7 @@ Done parsing form!
     console.log(`File [${fieldname}]: filename: ${filename}, encoding: ${encoding}, mimetype: ${mimetype}`);
 
     if (!isImageFile(mimetype)) {
-      const err = new Error('File is not a valid image type.')
+      const err = new Error('File is not a valid image type.');
       console.error(err);
       return next(err);
     }
@@ -202,7 +201,7 @@ Done parsing form!
       });
       
       const minutes = 5;
-      const expires = dayjs().add(minutes, 'minutes');
+      // const expires = dayjs().add(minutes, 'minutes');
       setTimeout(function() {
         minified.delete(uid);
       }, minutes * 60 * 1000);
@@ -235,9 +234,7 @@ app.get('/result/:uid', function(req, res, next) {
   }
 
   const {
-    filename,
     filesize,
-    mimetype,
     buffer
   } = minified.get(uid);
 
